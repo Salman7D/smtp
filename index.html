@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Responsive Web Form</title>
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+  <div class="w-full max-w-md bg-white shadow-lg rounded-2xl p-6">
+    <h2 class="text-2xl font-bold text-center mb-4">Contact Form</h2>
+
+    <!-- Formspree for email notification (replace YOUR_FORM_ID) -->
+    <!-- Form using SMTP.js (client-side email) -->
+    <form id="contactForm" class="space-y-4" onsubmit="sendEmail(event)">
+      <div>
+        <label class="block text-sm font-medium">Your Name</label>
+        <input type="text" id="name" required class="w-full mt-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium">Email Address</label>
+        <input type="email" id="email" required class="w-full mt-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium">Message</label>
+        <textarea id="message" rows="4" required class="w-full mt-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+      </div>
+
+      <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">Submit</button>
+    </form>
+
+  <!-- GitHub Button -->
+    <a href="https://github.com/YOUR_GITHUB_LINK" target="_blank" class="block mt-4 text-center bg-gray-800 text-white py-2 rounded-lg hover:bg-gray-900 transition">
+      Go to GitHub
+    </a>
+
+  <!-- SMTP.js for sending email -->
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
+  <script>
+    function sendEmail(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+
+      Email.send({
+        SecureToken: "rjbd kkjk koip daca",
+        To: "harashid@uttarauniversity.edu.bd",
+        From: "salmanfarshy763@gmail.com",
+        Subject: `New Contact Form Message from ${name}`,
+        Body: `Name: ${name}<br>Email: ${email}<br><br>Message:<br>${message}`,
+      }).then((response) => {
+        alert("Your message has been sent successfully!");
+      }).catch((error) => {
+        alert("Failed to send message. Please try again.");
+      });
+    }
+  </script>
+</body>
+</html>
